@@ -7,6 +7,24 @@
 
 <style>
 * { box-sizing: border-box; font-family: "Comic Sans MS", cursive; }
+.media-box {
+  margin: 20px auto;
+  width: 260px;
+  max-width: 80vw;
+}
+
+.media-box video,
+.media-box img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  display: none;
+}
+
+/* Show first media initially */
+#beforeMedia {
+  display: block;
+}
 
 body {
   margin: 0;
@@ -308,6 +326,7 @@ onresize=()=>{canvas.width=innerWidth;canvas.height=innerHeight};
   
 </body>
 </html>
+
 
 
 
