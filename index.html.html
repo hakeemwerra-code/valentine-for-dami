@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dami, Be My Valentine ❤️</title>
+
+<style>
+* { box-sizing: border-box; font-family: "Comic Sans MS", cursive; }
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 📸 PHOTO MARQUEE WITH FADE */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  background: rgba(255,255,255,0.75);
+  padding: 12px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.marquee-track img {
+  height: 95px;
+  margin: 0 14px;
+  border-radius: 16px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  animation: fadePhoto 6s ease-in-out infinite;
+}
+
+.marquee-track img:nth-child(odd) {
+  animation-delay: 3s;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes fadePhoto {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* MAIN CARD */
+.card {
+  margin-top: auto;
+  margin-bottom: auto;
+  background: rgba(255,255,255,0.92);
+  padding: 35px 45px;
+  border-radius: 28px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+  z-index: 5;
+}
+
+h1 {
+  color: #e63946;
+  font-size: 2.4rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#yesBtn { background: #ff4d6d; color: white; }
+#noBtn {
+  background: #adb5bd;
+  color: #333;
+}
+
+#final {
+  display: none;
+  font-size: 1.4rem;
+  color: #e63946;
+}
+
+#countdown {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: red;
+  transform: rotate(45deg);
+  animation: floatUp linear infinite;
+  opacity: 0.65;
+}
+
+.heart::before, .heart::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before { top: -9px; }
+.heart::after { left: -9px; }
+
+@keyframes floatUp {
+  from { transform: translateY(100vh) rotate(45deg); }
+  to { transform: translateY(-10vh) rotate(45deg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC -->
+<audio autoplay loop>
+  <source src="OurSong.mp3" type="audio/mpeg">
+</audio>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<audio controls autoplay>
+  <source src="OurSong.mp3" type="audio/mp3">
+  <source src="OurSong.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+</body>
+</html>
+
+<!-- 📸 PHOTO MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <img src="photos/pic1.jpg">
+    <img src="photos/pic2.jpg">
+    <img src="photos/pic3.jpg">
+    <img src="photos/pic4.jpg">
+    <img src="photos/pic5.jpg">
+
+    <img src="photos/pic1.jpg">
+    <img src="photos/pic2.jpg">
+    <img src="photos/pic3.jpg">
+    <img src="photos/pic4.jpg">
+    <img src="photos/pic5.jpg">
+  </div>
+</div>
+
+<canvas id="fx"></canvas>
+
+<div class="card">
+  <h1>Dami, will you be my Valentine? 💖</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 😢</button>
+  </div>
+
+  <div id="final">
+    <p><strong>I knew you'd say yes.</strong> ❤️🎆</p>
+    <p>
+      Meet me at <strong>X Restaurant</strong><br>
+      on <strong>February 14th, 2026</strong>
+    </p>
+    <div id="countdown"></div>
+  </div>
+</div>
+
+<script>
+/* Floating hearts */
+for (let i = 0; i < 40; i++) {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = 5 + Math.random() * 6 + "s";
+  document.body.appendChild(h);
+}
+
+/* Countdown */
+const target = new Date("February 14, 2026 00:00:00");
+setInterval(() => {
+  const now = new Date();
+  const diff = target - now;
+  if (diff > 0) {
+    const days = Math.floor(diff / 86400000);
+    document.getElementById("countdown").innerText =
+      `${days} days until Valentine’s Day ❤️`;
+  }
+}, 1000);
+
+/* Button logic (original persuasive version) */
+const noTexts = [
+  "Pretty please?",
+  "Come on Dami 🥺",
+  "Be serious 😭",
+  "I'm begging",
+  "Okay fine 😔"
+];
+
+let noCount = 0;
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+
+noBtn.onclick = () => {
+  if (noCount < noTexts.length) {
+    noBtn.textContent = noTexts[noCount];
+    noCount++;
+    yesBtn.style.transform = `scale(${1 + noCount * 0.4})`;
+  }
+
+  if (noCount === noTexts.length) {
+    noBtn.style.display = "none";
+    yesBtn.style.transform = "scale(2.5)";
+  }
+};
+
+yesBtn.onclick = () => {
+  document.querySelector(".buttons").style.display = "none";
+  document.getElementById("final").style.display = "block";
+  startFireworks();
+};
+
+/* ❤️ HEART FIREWORKS */
+const canvas = document.getElementById("fx");
+const ctx = canvas.getContext("2d");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+let particles = [];
+
+function heart(t){
+  return {
+    x: 16*Math.pow(Math.sin(t),3),
+    y: -(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))
+  };
+}
+
+function startFireworks(){
+  setInterval(()=>{
+    const cx=Math.random()*canvas.width;
+    const cy=Math.random()*canvas.height/2;
+    for(let t=0;t<Math.PI*2;t+=0.2){
+      const h=heart(t);
+      particles.push({
+        x:cx,y:cy,
+        vx:h.x*0.4,
+        vy:h.y*0.4,
+        life:100,
+        color:`hsl(${Math.random()*360},100%,60%)`
+      });
+    }
+  },600);
+  animate();
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p,i)=>{
+    p.x+=p.vx; p.y+=p.vy; p.life--;
+    ctx.fillStyle=p.color;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2,0,Math.PI*2);
+    ctx.fill();
+    if(p.life<=0) particles.splice(i,1);
+  });
+  requestAnimationFrame(animate);
+}
+
+onresize=()=>{canvas.width=innerWidth;canvas.height=innerHeight};
+</script>
+
+</body>
+</html>
