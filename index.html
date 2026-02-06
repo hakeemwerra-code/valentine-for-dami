@@ -7,20 +7,18 @@
 
 <style>
 * { box-sizing: border-box; font-family: "Comic Sans MS", cursive; }
+.media-box {
+  margin: 20px auto;
+  width: 260px;
+  max-width: 80vw;
+}
+
 .media-box video,
 .media-box img {
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  position: absolute;
-}
-
-.media-box {
-  position: relative;
-  height: 260px;
-}
-
-#beforeMedia {
-  opacity: 1;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  display: none;
 }
 
 /* Show first media initially */
@@ -188,11 +186,17 @@ canvas {
 
 <div class="card">
   <h1>Dami, will you be my Valentine? 💖</h1>
+<div class="media-box">
+  <!-- BEFORE YES -->
+  <img id="beforeMedia" autoplay loop muted playsinline>
+  <img src="media/before.gif" id="beforeMedia">
+  </img>
 
-  <!-- 🎥 Valentine GIF -->
-  <div class="media-container">
-    <img id="valentineGif" src="media/before.gif" alt="Valentine GIF" style="max-width:100%; border-radius:16px; margin-bottom:20px;">
-  </div>
+  <!-- AFTER YES -->
+  <img id="afterMedia" loop muted playsinline>
+  <img src="media/after.gif" id="afterMedia">
+  </img>
+</div>
 
   <div class="buttons">
     <button id="yesBtn">Yes 💕</button>
@@ -261,11 +265,6 @@ yesBtn.onclick = () => {
   document.querySelector(".buttons").style.display = "none";
   document.getElementById("final").style.display = "block";
 
-  // Swap the GIF
-  const valentineGif = document.getElementById("valentineGif");
-  valentineGif.src = "media/after.gif";
-
-  // Play music
   const music = document.getElementById("bgMusic");
   music.currentTime = 0;
   music.volume = 0.8;
@@ -327,10 +326,6 @@ onresize=()=>{canvas.width=innerWidth;canvas.height=innerHeight};
   
 </body>
 </html>
-
-
-
-
 
 
 
