@@ -145,11 +145,7 @@ canvas {
 </head>
 
 <body>
-
 <audio id="bgMusic" src="music/OurSong.mp3" preload="auto"></audio>
-
-</body>
-</html>
 
 <!-- 📸 PHOTO MARQUEE -->
 <div class="marquee">
@@ -239,9 +235,10 @@ noBtn.onclick = () => {
 yesBtn.onclick = () => {
   document.querySelector(".buttons").style.display = "none";
   document.getElementById("final").style.display = "block";
-
+music.currentTime = 0;
   const music = document.getElementById("bgMusic");
   music.volume = 0.8;
+  music.muted = false;
   music.play().catch(err => {
     console.log("Audio blocked:", err);
   });
@@ -296,9 +293,10 @@ function animate(){
 
 onresize=()=>{canvas.width=innerWidth;canvas.height=innerHeight};
 </script>
-
+  
 </body>
 </html>
+
 
 
 
