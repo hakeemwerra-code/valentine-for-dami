@@ -146,29 +146,7 @@ canvas {
 
 <body>
 
-<!-- 🎵 MUSIC -->
-<audio autoplay loop>
-  <source src="OurSong.mp3" type="audio/mpeg">
-  <audio id="bgMusic" src="music/easily.mp3"></audio>
-</audio>
-
-<!DOCTYPE html>
-<html>
-<body>
-
-<audio controls autoplay>
-  <source src="OurSong.mp3" type="audio/mp3">
-  <source src="OurSong.mp3" type="audio/mpeg">
-  <audio id="bgMusic" src="music/OurSong.mp3"></audio>
-  <audio id="bgMusic" src="music/OurSong.mp3"></audio>
-
-  <audio id="music" src="music/OurSong.mp3"></audio>
-
-document.getElementById("yesBtn").addEventListener("click", () => {
-  const music = document.getElementById("bgMusic");
-  music.play();
-});
-</audio>
+<audio id="bgMusic" src="music/OurSong.mp3" preload="auto"></audio>
 
 </body>
 </html>
@@ -261,6 +239,13 @@ noBtn.onclick = () => {
 yesBtn.onclick = () => {
   document.querySelector(".buttons").style.display = "none";
   document.getElementById("final").style.display = "block";
+
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.8;
+  music.play().catch(err => {
+    console.log("Audio blocked:", err);
+  });
+
   startFireworks();
 };
 
@@ -314,5 +299,6 @@ onresize=()=>{canvas.width=innerWidth;canvas.height=innerHeight};
 
 </body>
 </html>
+
 
 
