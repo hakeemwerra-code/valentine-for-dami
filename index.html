@@ -11,20 +11,25 @@
   margin: 20px auto;
   width: 260px;
   max-width: 80vw;
+  position: relative;
+  height: 260px;
 }
 
-.media-box video,
-.media-box img {
+.media-box video {
   width: 100%;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-  display: none;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.8s ease;
 }
 
-/* Show first media initially */
 #beforeMedia {
-  display: block;
+  opacity: 1;
 }
+
 
 body {
   margin: 0;
@@ -188,15 +193,16 @@ canvas {
   <h1>Dami, will you be my Valentine? 💖</h1>
 <div class="media-box">
   <!-- BEFORE YES -->
-  <img id="beforeMedia" autoplay loop muted playsinline>
-  <img src="media/before.gif" id="beforeMedia">
-  </img>
+  <video id="beforeMedia" autoplay loop muted playsinline>
+    <source src="media/before.mp4" type="video/mp4">
+  </video>
 
   <!-- AFTER YES -->
-  <img id="afterMedia" loop muted playsinline>
-  <img src="media/after.gif" id="afterMedia">
-  </img>
+  <video id="afterMedia" loop muted playsinline>
+    <source src="media/after.mp4" type="video/mp4">
+  </video>
 </div>
+
 
   <div class="buttons">
     <button id="yesBtn">Yes 💕</button>
@@ -265,16 +271,26 @@ yesBtn.onclick = () => {
   document.querySelector(".buttons").style.display = "none";
   document.getElementById("final").style.display = "block";
 
+  // Swap media
+  const before = document.getElementById("beforeMedia");
+  const after = document.getElementById("afterMedia");
+
+  before.style.opacity = 0;
+  after.style.opacity = 1;
+
+  after.currentTime = 0;
+  after.play().catch(()=>{}); // play for iOS
+
+  // Music and fireworks
   const music = document.getElementById("bgMusic");
   music.currentTime = 0;
   music.volume = 0.8;
   music.muted = false;
-  music.play().catch(err => {
-    console.log("Audio blocked:", err);
-  });
+  music.play().catch(err => { console.log("Audio blocked:", err); });
 
   startFireworks();
 };
+
 
 /* ❤️ HEART FIREWORKS */
 const canvas = document.getElementById("fx");
@@ -326,6 +342,7 @@ onresize=()=>{canvas.width=innerWidth;canvas.height=innerHeight};
   
 </body>
 </html>
+
 
 
 
