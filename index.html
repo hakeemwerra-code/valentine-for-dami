@@ -149,6 +149,7 @@ canvas {
 <!-- 🎵 MUSIC -->
 <audio autoplay loop>
   <source src="OurSong.mp3" type="audio/mpeg">
+  <audio id="bgMusic" src="music/easily.mp3"></audio>
 </audio>
 
 <!DOCTYPE html>
@@ -158,7 +159,13 @@ canvas {
 <audio controls autoplay>
   <source src="OurSong.mp3" type="audio/mp3">
   <source src="OurSong.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
+  <audio id="bgMusic" src="music/OurSong.mp3"></audio>
+  <audio id="bgMusic" src="music/OurSong.mp3"></audio>
+
+document.getElementById("yesBtn").addEventListener("click", () => {
+  const music = document.getElementById("bgMusic");
+  music.play();
+});
 </audio>
 
 </body>
@@ -167,17 +174,17 @@ Your browser does not support the audio element.
 <!-- 📸 PHOTO MARQUEE -->
 <div class="marquee">
   <div class="marquee-track">
-    <img src="photos/pic1.jpg">
-    <img src="photos/pic2.jpg">
-    <img src="photos/pic3.jpg">
-    <img src="photos/pic4.jpg">
-    <img src="photos/pic5.jpg">
+    <img src="images/pic1.jpg" class="fade">
+    <img src="images/pic2.jpg" class="fade">
+    <img src="images/pic3.jpg" class="fade">
+    <img src="images/pic4.jpg" class="fade">
+    <img src="images/pic5.jpg" class="fade">
 
-    <img src="photos/pic1.jpg">
-    <img src="photos/pic2.jpg">
-    <img src="photos/pic3.jpg">
-    <img src="photos/pic4.jpg">
-    <img src="photos/pic5.jpg">
+    <img src="images/pic1.jpg" class="fade">
+    <img src="images/pic2.jpg" class="fade">
+    <img src="images/pic3.jpg" class="fade">
+    <img src="images/pic4.jpg" class="fade">
+    <img src="images/pic5.jpg" class="fade">
   </div>
 </div>
 
@@ -305,3 +312,4 @@ onresize=()=>{canvas.width=innerWidth;canvas.height=innerHeight};
 
 </body>
 </html>
+
