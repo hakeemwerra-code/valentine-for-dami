@@ -164,45 +164,6 @@ canvas {
   from { transform: translateY(100vh) rotate(45deg); }
   to { transform: translateY(-10vh) rotate(45deg); }
 }
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Be My Valentine</title>
-
-  <style>
-    .subtitle {
-      margin: 12px 0 18px;
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: #fff;
-      text-align: center;
-      z-index: 2;
-      position: relative;
-    }
-
-    .card {
-      position: relative;
-      text-align: center;
-    }
-
-    .media-box {
-      position: relative;
-      z-index: 1;
-    }
-
-    .media-box video {
-      max-width: 100%;
-      border-radius: 16px;
-    }
-  </style>
-</head>
-<body>
-  <!-- your page content -->
-</body>
-</html>
-
 </style>
 </head>
 
@@ -230,19 +191,11 @@ canvas {
 
 <div class="card">
   <h1>Dami, will you be my Valentine? 💖</h1>
-
-<h2 class="subtitle">
-  You can still click “No”… but we both know that’s not happening 😌
-</h2>
-
-  <div class="media-box">
-    <!-- BEFORE YES -->
-    <video id="beforeMedia" autoplay loop muted playsinline preload="auto">
-      <source src="media/before.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
-
+<div class="media-box">
+  <!-- BEFORE YES -->
+  <video id="beforeMedia" autoplay loop muted playsinline preload="auto">
+    <source src="media/before.mp4" type="video/mp4">
+  </video>
 
   <!-- AFTER YES -->
   <video id="afterMedia" loop muted playsinline preload="auto">
@@ -394,13 +347,6 @@ onresize=()=>{canvas.width=innerWidth;canvas.height=innerHeight};
   
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 
